@@ -1,0 +1,138 @@
+<section>
+	<div class="middle_content">
+		<ul class="tablist" ng-init="tab = 1">
+		
+			<li ng-class="{active_tab:tab===1}"> 
+				<a href ng-click="tab = 1">Movies</a>	
+			</li>
+			<li ng-class="{active_tab:tab===2}"> 
+				<a href ng-click="tab = 2">TV Shows</a> 
+			</li>
+			<li ng-class="{active_tab:tab===3}"> 
+				<a href ng-click="tab = 3">People</a> 
+			</li>
+			<br><br>
+			<div ng-show="tab === 1" class="clr"> 
+			
+			    <div class="clr">
+				<div class="left">
+				<input type="text" ng-model="searchMovie" class="searchbox" placeholder="search movie"> 
+				</div>
+				   <div class="search_element">
+					<label for="sort_by">Sort By</label>
+					<select style="width: 206px;"  id="sort_by" ng-model="orderby_type">					  
+					  <option value="vote_count">Vote Count(Asc)</option>	
+                      <option value="-vote_count">Vote Count(Desc)</option>					  
+					  <option value="vote_average">Vote Average (Asc)</option> 
+                      <option value="-vote_average">Vote Average(Desc)</option>  					  
+					  <option value="title">Title (A-Z)</option>
+					  <option value="-title">Title (Z-A)</option>
+					</select>
+				  </div>  				
+				
+				<div class="movielist">				
+					<div ng-repeat="x in movieList | filter:searchMovie | orderBy:orderby_type" class="movielist_sec margin-r-20 margin-b-20 left">		
+						  <div class="left">
+							   <img ng-src="http://image.tmdb.org/t/p/w370{{x.poster_path}}" width="92" />
+						  </div>
+						  
+						  <div class="left margin-l-10">
+							  <div class="title_site">{{x.title}}</div>	 
+							  <div class="rdate">Release Date : {{x.release_date}}</div>
+							  <div class="rdate">Vote Average : {{x.vote_average}}</div>
+							  <div class="rdate">Vote Count : {{x.vote_count}}</div> 							 
+						  </div>						  
+					</div>
+				</div>
+				</div>
+			</div>
+			<div ng-show="tab === 2" class="clr"> 	
+				<div class="clr">
+				<input type="text" ng-model="searchTv" class="searchbox" placeholder="search Tv series">
+				
+				 <div class="search_element">
+					<label for="sort_by">Sort By</label>
+					<select style="width: 206px;"  id="sort_by" ng-model="orderby_typetv">					  
+					  <option value="vote_count">Vote Count(Asc)</option>	
+                      <option value="-vote_count">Vote Count(Desc)</option>					  
+					  <option value="vote_average">Vote Average (Asc)</option> 
+                      <option value="-vote_average">Vote Average(Desc)</option>  					  
+					  <option value="name">Title (A-Z)</option>
+					  <option value="-name">Title (Z-A)</option>
+					</select>
+				  </div> 
+				
+				
+				<div class="movielist">				
+					<div ng-repeat="x in tvList | filter:searchTv | orderBy:orderby_typetv" class="movielist_sec margin-r-20 margin-b-20">
+						<div class="left">
+							<img ng-src="http://image.tmdb.org/t/p/w370{{x.poster_path}}" width="92" />
+						</div>
+						<div class="left margin-l-10">
+							<div class="title_site">{{x.name}}</div>	 						
+							<div class="rdate">Vote Average : {{x.vote_average}}</div>
+							<div class="rdate">Vote Count : {{x.vote_count}}</div>		  
+							<div class="rdate">Vote average : {{x.vote_average}}</div>  
+						</div>
+					</div>	
+				</div>	
+				</div>	
+			</div>
+			<div ng-show="tab === 3" class="clr"> 
+				<div class="clr">
+				
+				<input type="text" ng-model="searchPeople" class="searchbox" placeholder="search People">		
+
+
+				<div class="search_element">
+					<label for="sort_by">Sort By</label>
+					<select style="width: 206px;"  id="sort_by" ng-model="orderby_typeppl">				  
+					 				  
+					  <option value="popularity"> Popularity (Asc)</option> 
+                      <option value="-popularity"> Popularity(Desc)</option>  					  
+					  <option value="name">Title (A-Z)</option>
+					  <option value="-name">Title (Z-A)</option>
+					</select>
+				  </div> 
+
+				
+				<div class="movielist">
+					<div ng-repeat="people in peopleList | filter:searchPeople | orderBy:orderby_typeppl" class="peoplelist_sec margin-r-20 margin-b-20">
+					
+						<div class="left">
+							<img ng-src="http://image.tmdb.org/t/p/w370{{people.profile_path}}" width="92" />
+						</div>
+						
+						<div class="left margin-l-10">
+							<div class="title_site">{{people.name}}</div>	 
+							<div class="rdate">Popularity :{{people.popularity}}</div>
+							<button class="knownbtn" ng-click="display = !display"> Known For </button>
+						</div>
+						
+						<div ng-show="display" class="clr knownppl animate">
+						<div data-ng-repeat="known in people.known_for" class="margin-r-20 margin-b-20 left">
+							<div class="left">
+								<img ng-src="http://image.tmdb.org/t/p/w370{{known.poster_path}}" width="92" /><br>
+							</div>
+							<div class="left margin-l-10">
+								<div class="title_site">Original title : {{known.original_title}}</div>
+								<div class="rdate">Release date : {{known.release_date}}</div>								
+								<div class="rdate">Vote average : {{known.vote_average}}</div>
+								<div class="rdate">Vote count :  {{known.vote_count}}</div>
+							</div>			
+						</div>
+						</div>
+						
+					</div>
+					
+					
+					
+					
+					
+				</div>
+			</div>
+			</div>
+		</ul>		
+	</div>
+	
+	</section>	
