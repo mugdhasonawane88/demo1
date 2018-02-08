@@ -1,0 +1,45 @@
+thead {
+    color: #337AB7;
+}
+body{
+    font-size: 15px;
+}
+thead {
+    color: #337AB7;
+}
+.align_left{
+    float: left;
+}
+.clr{
+    clear: both;
+}
+.panel-primary{
+    border: 1px solid #dee2e6;
+    margin: 30px;
+}
+.product-table td{
+text-align: left;
+}
+.panel-bkg{
+background: #007bff;
+color: #fff;
+padding: 15px 30px;
+text-align: left;
+border-radius: 5px 5px 0 0;
+margin: 0 0 20px 0;
+}
+.panel-body{
+    font-size: 14px;
+    color: gray;
+    padding: 0 0 0 15px;
+   
+}
+.panel-heading{  
+    font-size: 18px;
+}
+.filteredby{
+    float: left;
+    margin-left:25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

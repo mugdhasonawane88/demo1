@@ -1,0 +1,56 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading panel-bkg'>
+    {{pageTitle}}
+  </div>
+  <div class='panel-body row'>
+      <div class='row col-md-12'>
+          <div class='col-md-1'>Filter by:</div>
+          <div class='col-md-2'>
+              <input type='text' [(ngModel)] = 'listFilter' />
+          </div>
+      </div>
+      <div class='row col-md-12'>         
+        <div class='filteredby'>Filtered by:{{listFilter}}</div>        
+      </div>
+   
+      <div class='table-responsive'>
+          <table class='table product-table' *ngIf ='products && products.length'>
+              <thead>
+                  <tr>
+                      <th>
+                          <button class='btn btn-primary' (click) = 'toggleImage()'>
+                           {{showImage ? 'Hide' : 'Show'}} Image
+                          </button>
+                      </th>
+                      <th>Product</th>
+                      <th>Code</th>
+                      <th>Available</th>
+                      <th>Price</th>
+                      <th>5 Star Rating</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor = 'let product of filteredProducts'>
+                      <td><img 
+                        *ngIf = 'showImage'
+                        [src]='product.imageUrl' 
+                        [title]='product.productName' 
+                        [style.width.px]='imageWidth'
+                        [style.margin.px]='imageMargin'></td>
+                      <td><a>{{product.productName}}</a></td>
+                      <td> {{product.productCode | lowercase | covertToSpaces : '-'}}</td>
+                      <td> {{product.releaseDate}}</td>                   
+                      <td> {{product.price | currency : 'USD' : true : '5.3-3' }}</td>
+                      <td> <app-star [rating]='product.starRating'
+                        (ratingClicked)='onRatingClicked($event)'>
+                    </app-star></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+ 
+  </div>
+</div>
+<div class='alert alert-danger'>
+  Error:
+</div>
